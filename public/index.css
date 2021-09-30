@@ -6,6 +6,10 @@ body {
   padding: 0;
 }
 
+.text-center {
+  text-align: center;
+}
+
 #load {
   color: rgba(0, 0, 0, 0.4);
   text-align: center;

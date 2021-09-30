@@ -46,13 +46,21 @@
   </head>
   <body>
     <div class="main main-container">
-      <h2 class="text-center">Welcome Team Syndrome</h2>
-      <p>Do you want to play a game?</p>
-      <button onclick="window.location.href='avatarselection.html'">
-        Play Game
-      </button>
-      <button onclick="window.location.href='feedback.html'">Feedback</button>
-      <button onclick="window.location.href='help.html'">Help</button>
+      <h2 class="text-center">Choose an avatar</h2>
+      <div class="avatar">
+        <button onclick="showDesc('scientist')">Scientist</button>
+        <button onclick="showDesc('engineer')">Engineer</button>
+        <button onclick="showDesc('astronaut')">Astronaut</button>
+        <button onclick="showDesc('biologist')">Biologist</button>
+      </div>
+
+      <!--Image-->
+      <div id="avatar-img"></div>
+      <!--Description-->
+      <div id="avatar-desc"></div>
+
+      <button class="back-button" onclick="window.location.href='index.html'">Back to Main Menu</button>
+
     </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
 
@@ -96,6 +104,24 @@
             "Error loading the Firebase SDK, check the console.";
         }
       });
+
+        function showDesc($avatar) {
+            switch($avatar) {
+                case "scientist":
+                    document.getElementById('avatar-desc').innerHTML = "scientist";
+                    break;
+                case "engineer":
+                    document.getElementById('avatar-desc').innerHTML = "scientistsss";
+                    break;
+                case "astronaut":
+                    document.getElementById('avatar-desc').innerHTML = "scientissdsdst";
+                    break;
+                case "biologist":
+                    document.getElementById('avatar-desc').innerHTML = "scientisdsdst";
+                    break;
+            }
+        };
+
     </script>
   </body>
 </html>

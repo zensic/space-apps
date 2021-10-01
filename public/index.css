@@ -4,10 +4,11 @@
   --text-secondary: #ececec;
   --transition-speed: 600ms;
   --radius: 6.3px;
+  --box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  --opacity: 0.2;
 }
 
 body {
-  background: #eceff1;
   color: rgba(0, 0, 0, 0.87);
   font-family: Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
@@ -16,16 +17,13 @@ body {
 
 .main {
   max-width: 1000px;
-}
-
-.main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
 }
 
-.main-container button {
+.index button {
   width: 80%;
   padding: 1rem;
   margin: 0.5rem 0;
@@ -41,7 +39,7 @@ body {
   font-size: 13px;
 }
 
-/*avatar selection start*/
+/*avatar selection start ------------------------------------------------------------------------------------------------------*/
 .avatar {
   display: flex;
   width: 100%;
@@ -49,18 +47,192 @@ body {
 
 .avatar button {
   width: 25%;
+  padding: 1rem 0;
+  border: none;
+  transform: var(--transition-speed);
+}
+
+.avatar button:hover {
+  cursor: pointer;
+  color: var(--text-primary);
+  background-color: black;
+}
+
+.avatar-container {
+  display: flex;
+  width: 100%;
 }
 
 .back-button {
   position: absolute;
   bottom: 0;
 }
-/*avatar selection end*/
 
-/* gameplay page start */
-/* gameplay page end */
+#avatar-view {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
 
+#avatar-view > div {
+  width: 50%;
+  text-align: center;
+}
+/*avatar selection end ------------------------------------------------------------------------------------------------------*/
+
+/* gameplay page start ------------------------------------------------------------------------------------------------------*/
+
+.game-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: var(--box-shadow);
+}
+
+.game-title {
+  background-color: #b6b6b6;
+  border-radius: var(--radius);
+  padding: 1rem 2rem;
+}
+
+.col-1 {
+  width: 55%;
+  background-color: var(--text-primary);
+  border-radius: var(--radius);
+}
+
+.col-1 h2 {
+  margin: 1rem 2rem;
+}
+
+#scene-div {
+  text-align: center;
+}
+
+#scene-div img {
+  width: 90%;
+  height: auto;
+}
+
+.col-2 {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.col-2 h2 {
+  background-color: #b6b6b6;
+  border-radius: var(--radius);
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.col-2-1 {
+  height: 25rem;
+  background-color: var(--text-primary);
+  border-radius: var(--radius);
+  overflow: auto;
+}
+
+.col-2-1 p {
+  padding: 0 1rem;
+}
+
+.col-2-2 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10%;
+}
+
+.col-2-2 input {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 2rem 1rem;
+  border-radius: var(--radius);
+}
+
+/* gameplay page end ------------------------------------------------------------------------------------------------------*/
+
+/* End Scene Start------------------------------------------------------*/
+.end-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#end-title {
+  color: #00ff41;
+}
+
+.end-col-1 {
+  width: 100%;
+  background-color: black;
+  margin: 1rem;
+}
+
+.end-col-2 {
+  width: 100%;
+  background-color: var(--text-primary);
+  margin: 1rem;
+}
+
+.end-btn {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.red-border {
+  border: solid red 1px;
+}
+/* End Scene End------------------------------------------------------*/
+
+/* Credits Start------------------------------------------------------*/
+.credit-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.credit-card-wave {
+  width: 10%;
+  padding: 2rem 0;
+  text-align: center;
+  border-radius: var(--radius);
+  background-color: rgba(0, 0, 255, 0.4);
+}
+
+.credit-card-desc {
+  width: 85%;
+  padding: 2rem 0;
+  padding-left: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--text-primary);
+}
+
+.credit-end {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.credit-button {
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--text-primary);
+}
+
+/* Credits End------------------------------------------------------*/
 
 @media only screen and (max-width: 1000px) {
-  
 }

@@ -15,27 +15,7 @@
       defer
       src="/__/firebase/9.1.0/firebase-firestore-compat.js"
     ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.0/firebase-functions-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.0/firebase-messaging-compat.js"
-    ></script>
     <script defer src="/__/firebase/9.1.0/firebase-storage-compat.js"></script>
-    <script
-      defer
-      src="/__/firebase/9.1.0/firebase-analytics-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.0/firebase-remote-config-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/9.1.0/firebase-performance-compat.js"
-    ></script>
     <!-- 
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
@@ -45,7 +25,7 @@
     <style media="screen"></style>
   </head>
   <body>
-    <div class="main main-container">
+    <div class="main">
       <h2 class="text-center">Choose an avatar</h2>
       <div class="avatar">
         <button onclick="showDesc('scientist')">Scientist</button>
@@ -54,74 +34,63 @@
         <button onclick="showDesc('biologist')">Biologist</button>
       </div>
 
-      <!--Image-->
-      <div id="avatar-img"></div>
-      <!--Description-->
-      <div id="avatar-desc"></div>
+      <div id="avatar-view" class="avatar">
+        <!--Image-->
+        <div id="avatar-img" class="avatar-img">
+          <img src="" />
+        </div>
 
-      <button class="back-button" onclick="window.location.href='index.html'">Back to Main Menu</button>
+        <!--Description-->
+        <div id="avatar-desc" class="type-out">desc</div>
+      </div>
 
+      <button class="back-button" onclick="window.location.href='index.html'">
+        Back to Main Menu
+      </button>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const loadEl = document.querySelector("#load");
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            "auth",
-            "database",
-            "firestore",
-            "functions",
-            "messaging",
-            "storage",
-            "analytics",
-            "remoteConfig",
-            "performance",
-          ].filter((feature) => typeof app[feature] === "function");
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(
-            ", "
-          )}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent =
-            "Error loading the Firebase SDK, check the console.";
+      function showDesc($avatar) {
+        switch ($avatar) {
+          case "scientist":
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].src = "images/scientist.jpg";
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].alt = "scientist";
+              document.getElementById("avatar-desc").innerHTML = "<strong>Scientist</strong><br>Scientist is important for space exploration because...";
+            break;
+          case "engineer":
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].src = "";
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].alt = "engineer";
+              document.getElementById("avatar-desc").innerHTML = "<strong>Engineer</strong><br>Engineer is important for space exploration because...";
+            break;
+          case "astronaut":
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].src = "";
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].alt = "astronaut";
+            document.getElementById("avatar-desc").innerHTML = "<strong>Astronaut</strong><br>Astronaut is important for space exploration because...";
+            break;
+          case "biologist":
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].src = "";
+            document
+              .getElementById("avatar-img")
+              .getElementsByTagName("img")[0].alt = "biologist";
+            document.getElementById("avatar-desc").innerHTML = "<strong>Biologist</strong><br>Biologist is important for space exploration because...";
+            break;
         }
-      });
-
-        function showDesc($avatar) {
-            switch($avatar) {
-                case "scientist":
-                    document.getElementById('avatar-desc').innerHTML = "scientist";
-                    break;
-                case "engineer":
-                    document.getElementById('avatar-desc').innerHTML = "scientistsss";
-                    break;
-                case "astronaut":
-                    document.getElementById('avatar-desc').innerHTML = "scientissdsdst";
-                    break;
-                case "biologist":
-                    document.getElementById('avatar-desc').innerHTML = "scientisdsdst";
-                    break;
-            }
-        };
-
+      }
     </script>
+
+    <script src="scripts/app.js"></script>
   </body>
 </html>

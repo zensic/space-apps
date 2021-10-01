@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
-    <title>Space Apps</title>
+    <title>Ended</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.1.0/firebase-app-compat.js"></script>
@@ -24,19 +24,26 @@
 
     <style media="screen"></style>
   </head>
-  <body>
-    <div class="main index">
-      <h2 class="text-center">Welcome Team Syndrome</h2>
-      <p>Do you want to play a game?</p>
-      <button onclick="window.location.href='avatarselection.html'">
-        Play Game
-      </button>
-      <button onclick="window.location.href='feedback.html'">Feedback</button>
-      <button onclick="window.location.href='help.html'">Help</button>
-      <button onClick="setTest()">Set Test</button>
-      <button onClick="getTest()">Get Test</button>
-    </div>
 
+  <body>
+    <div class="main">
+      <div class="end-col-1">
+        <h1 class="text-center" id="end-title">
+         THANK YOU FOR PLAYING
+        </h1>
+        <h2>
+          HERE IS YOUR CERTIFICATE UPON COMPLETING THE GAME!
+        </h2>
+      </div>
+
+      <button class="end-btn" onclick="window.location.href='credits.html'">
+        Download PDF
+      </button>
+
+      <button class="end-btn" onclick="window.location.href='credits.html'">
+        Main Menu
+      </button>
+    </div>
     <script src="scripts/app.js"></script>
   </body>
 </html>

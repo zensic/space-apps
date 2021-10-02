@@ -49,7 +49,6 @@
             <div id="scene-div">
               <img src="images/biologist.jpg" alt="scene" />
             </div>
-            <button>Status</button>
           </div>
         </div>
         <div class="col-2">
@@ -66,13 +65,14 @@
         </div>
       </div>
     </div>
+    <button data-modal-target="#modal">Open Modal</button>
     <div class="modal" id="modal">
       <div class="modal-header">
-        <div class="title">Status Window</div>
-        <button class="close-button">&times;</button>
+        <div class="title">Status Levels</div>
+        <button data-close-button class="close-button">&times;</button>
       </div>
       <div class="modal-body">
-        <p>Health level</p>
+        <p>Health Level</p>
         <p>Muscle Mass</p>
         <p>Bones Mass</p>
         <p>Radiation Level</p>

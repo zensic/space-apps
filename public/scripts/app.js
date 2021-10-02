@@ -90,6 +90,59 @@ function setAvatar($avatar, $sessionAvatar) {
 
 function handleChoose($sessionAvatar) {
   sessionStorage.setItem("avatar", $sessionAvatar);
-  window.location.href='gameplay.html';
+  window.location.href = "gameplay.html";
 }
 /* avatar selection end */
+
+/* gameplay section start */
+const history = document.getElementById("command-history");
+const command_input = document.getElementById("command-input");
+
+// adds user command input to command history
+function handleCommand(command) {
+  const line = document.createElement("p");
+  line.innerHTML = "> " + command;
+  history.appendChild(line);
+  history.scrollTop = history.scrollHeight;
+}
+
+command_input.addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    e.preventDefault();
+    handleCommand(command_input.value);
+    command_input.value = "";
+  }
+});
+
+// adds one to the count and updates the dom
+function addMonth($month) {
+  $month[0] = $month[0] + 1;
+  document.getElementById("game-month").innerHTML = $month[0];
+}
+
+// gets the scenario and updates the dom
+function getScenario($index) {
+  const db = firebase.firestore();
+  var docRef = db.collection("scenario").doc($index);
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        console.log(doc.data().detail);
+        handleCommand(doc.data().detail);
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+}
+
+function initScenario() {
+  document.addEventListener("DOMContentLoaded", (event) => {
+    getScenario("0");
+  });
+}
+
+/* gameplay section end */

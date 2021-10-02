@@ -2,6 +2,7 @@
   font-size: 16px;
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
+  --bg-primary: rgba(182, 182, 182, 0.95);
   --transition-speed: 600ms;
   --radius: 6.3px;
   --box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -196,7 +197,7 @@ body {
 
 .col-1 {
   width: 55%;
-  background-color: var(--text-primary);
+  background-color: var(--bg-primary);
   border-radius: var(--radius);
   display: flex;
   align-items: center;
@@ -224,13 +225,13 @@ body {
 .col-2 h3 {
   padding: 1rem;
   margin: 0;
-  background-color: #b6b6b6;
+  background-color: var(--bg-primary);
   border-radius: var(--radius);
 }
 
 .col-2-1 {
   height: 60vh;
-  background-color: var(--text-primary);
+  background-color: var(--bg-primary);
   border-radius: var(--radius);
   overflow: auto;
 }
@@ -251,6 +252,69 @@ body {
   width: 100%;
   padding: 2rem 1rem;
   border-radius: var(--radius);
+}
+
+#command-history {
+  scroll-behavior: smooth;
+}
+
+.modal {
+  width: 80%;
+  max-width: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 1px solid black;
+  border-radius: var(--radius);
+  z-index: 10;
+  background-color: white;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-header .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 0.5rem 1rem;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* gameplay page end ------------------------------------------------------------------------------------------------------*/

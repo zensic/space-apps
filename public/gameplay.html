@@ -29,6 +29,12 @@
         background-size: cover;
       }
     </style>
+
+    <script>
+      var avatar = sessionStorage.getItem("avatar");
+      var month = [0];
+      var stats = { hp: 100, mm: 100, bm: 100, rl: 0, sl: 0 };
+    </script>
   </head>
   <body>
     <div class="main">
@@ -36,51 +42,19 @@
       <div class="game-container">
         <div class="col-1">
           <div class="game-info">
-            <h3>
-              Time:
-              <script>
-                document.write(new Date().toLocaleDateString());
-              </script>
-            </h3>
+            <h3>Month: <span id="game-month">0</span></h3>
             <div id="scene-div">
-              <img src="images/mudkipz.jpg" alt="scene" /> 
+              <img src="images/biologist.jpg" alt="scene" />
             </div>
+            <button>Status</button>
           </div>
         </div>
         <div class="col-2">
           <h3>Command Center</h3>
-          <div class="col-2-1">
-            <p>
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of
-              the more obscure Latin words, consectetur, from a Lorem Ipsum
-              passage, and going through the cites of the word in classical
-              literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-              Malorum" (The Extremes of Good and Evil) by Cicero, written in 45
-              BC. This book is a treatise on the theory of ethics, very popular
-              during the Renaissance. The first line of Lorem Ipsum, "Lorem
-              ipsum dolor sit amet..", comes from a line in section 1.10.32. The
-              standard chunk of Lorem Ipsum used since the 1500s is reproduced
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of
-              the more obscure Latin words, consectetur, from a Lorem Ipsum
-              passage, and going through the cites of the word in classical
-              literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-              Malorum" (The Extremes of Good and Evil) by Cicero, written in 45
-              BC. This book is a treatise on the theory of ethics, very popular
-              during the Renaissance. The first line of Lorem Ipsum, "Lorem
-              ipsum dolor sit amet..", comes from a line in section 1.10.32. The
-              standard chunk of Lorem Ipsum used since the 1500s is reproduced
-            </p>
-          </div>
+          <div id="command-history" class="col-2-1"></div>
           <div class="col-2-2">
             <input
+              id="command-input"
               type="text"
               name="command"
               placeholder="Enter your command.."
@@ -89,6 +63,23 @@
         </div>
       </div>
     </div>
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="title">Status Window</div>
+        <button class="close-button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Health level</p>
+        <p>Muscle Mass</p>
+        <p>Bones Mass</p>
+        <p>Radiation Level</p>
+        <p>Stress Level</p>
+      </div>
+    </div>
+    <div id="overlay"></div>
     <script src="scripts/app.js"></script>
+    <script>
+      initScenario();
+    </script>
   </body>
 </html>

@@ -90,6 +90,7 @@ function handleChoose($sessionAvatar) {
 /* gameplay section start */
 const history = document.getElementById("command-history");
 const command_input = document.getElementById("command-input");
+var no_of_filler_tasks_executed = 0;
 
 // adds user command input to command history
 function handleCommand(command) {
@@ -104,35 +105,39 @@ function initEnterListener($month, $stats) {
     if (e.key == "Enter") {
       e.preventDefault();
       handleCommand(command_input.value);
-      getEffect($month, command_input.value, $stats);
 
-      var fish_fillet = `
-      You are free to explore! Here's what you can do:<br/>
-      1. Check Health<br/>
-      2. Check Radiation Levels<br/>
-      3. Eat fruits and vegetables<br/>
-      4. Exercise<br/>
-      5. Take radiation medicine<br/><br/>
-      `;
-      handleCommand(fish_fillet);
-      getFillerTask(command_input.value, $stats);
-
+      if (no_of_filler_tasks_executed >= 3) {
+        no_of_filler_tasks_executed = 0;
+        getEffect($month, command_input.value, $stats);
+      } else {
+        var fish_fillet = `
+        You are free to explore! Here's what you can do:<br/>
+        1. Check Health<br/>
+        2. Check Radiation Levels<br/>
+        3. Eat fruits and vegetables<br/>
+        4. Exercise<br/>
+        5. Take radiation medicine<br/><br/>
+        `;
+        handleCommand(fish_fillet);
+        getFillerTask(command_input.value, $stats);
+        no_of_filler_tasks_executed += 1;
+      }
+      
       command_input.value = "";
     }
   });
 }
 
 function getFillerTask($index, $stats) {
+  var option = (parseInt(command_input.value - 1)).toString();
+  console.log("Filler Task no. " + option);
   const db = firebase.firestore();
-  var docRef = db.collection("filler_task").doc($index);
+  var docRef = db.collection("filler_task").doc(option);
 
   docRef
     .get()
     .then((doc) => {
       if (doc.exists) {
-
-        console.log(doc.data().name);
-
         var response = "";
 
         if (doc.data().type == "check") {
@@ -238,11 +243,11 @@ function getStats($index, $action, $stats) {
         var eBm = doc.data().bm ? doc.data().bm : 0;
         var eRl = doc.data().rl ? doc.data().rl : 0;
         var eSl = doc.data().sl ? doc.data().sl : 0;
-        
+
         updateStatus(eHp, eMm, eBm, eRl, eSl, $stats);
 
         // advance to next month
-        $index[0] = $index[0] + 1; 
+        $index[0] = $index[0] + 1;
 
         // goes to the next scenario
         getScenario($index[0].toString());
@@ -290,7 +295,6 @@ function getEffect($index, $action, $stats) {
         // goes to the next scenario
         // getScenario($index[0].toString());
       } else {
-        
         console.log("No such document!");
       }
     })
@@ -316,11 +320,36 @@ function validateInput($input, $numInputs) {
 // accepts number of stat to change
 function updateStatus($hp, $mm, $bm, $rl, $sl, $stsArr) {
   console.log($hp);
-  $stsArr["hp"] = ($stsArr["hp"] + $hp < 0) ? 0 : ($stsArr["hp"] + $hp > 100) ? 100 : $stsArr["hp"] + $hp;
-  $stsArr["mm"] = ($stsArr["mm"] + $mm < 0) ? 0 : ($stsArr["mm"] + $mm > 100) ? 100 : $stsArr["mm"] + $mm;
-  $stsArr["bm"] = ($stsArr["bm"] + $bm < 0) ? 0 : ($stsArr["bm"] + $bm > 100) ? 100 : $stsArr["hp"] + $bm;
-  $stsArr["rl"] = ($stsArr["rl"] + $rl < 0) ? 0 : ($stsArr["rl"] + $rl > 100) ? 100 : $stsArr["rl"] + $rl;
-  $stsArr["sl"] = ($stsArr["sl"] + $sl < 0) ? 0 : ($stsArr["sl"] + $sl > 100) ? 100 : $stsArr["sl"] + $sl;
+  $stsArr["hp"] =
+    $stsArr["hp"] + $hp < 0
+      ? 0
+      : $stsArr["hp"] + $hp > 100
+      ? 100
+      : $stsArr["hp"] + $hp;
+  $stsArr["mm"] =
+    $stsArr["mm"] + $mm < 0
+      ? 0
+      : $stsArr["mm"] + $mm > 100
+      ? 100
+      : $stsArr["mm"] + $mm;
+  $stsArr["bm"] =
+    $stsArr["bm"] + $bm < 0
+      ? 0
+      : $stsArr["bm"] + $bm > 100
+      ? 100
+      : $stsArr["hp"] + $bm;
+  $stsArr["rl"] =
+    $stsArr["rl"] + $rl < 0
+      ? 0
+      : $stsArr["rl"] + $rl > 100
+      ? 100
+      : $stsArr["rl"] + $rl;
+  $stsArr["sl"] =
+    $stsArr["sl"] + $sl < 0
+      ? 0
+      : $stsArr["sl"] + $sl > 100
+      ? 100
+      : $stsArr["sl"] + $sl;
   console.log($sl);
   // updates the dom model
   document.getElementById("hp").innerHTML = $stsArr["hp"];

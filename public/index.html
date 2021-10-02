@@ -23,11 +23,6 @@
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <script>
-      document.getElementById('audio');
-      audio.volume = 0.2; //Set a fix volume value
-    </script>
-
     <style media="screen"></style>
 
     <style>
@@ -39,7 +34,7 @@
     </style>
   </head>
   <body>
-    <audio id="audio" autoplay loop>
+    <audio id="audio" autoplay loop onload="adjustVolume('audio')">
       <source src="audio/bgm1.mp3" type="audio/mpeg" />
     </audio>
     <div class="main index">
@@ -53,6 +48,7 @@
       <button><a href="https://forms.gle/2fhAtrbgfzVDPgtL7" target="_blank" rel="noopener noreferrer" id="feedback-button">Feedback</a></button>
       <button onclick="window.location.href='help.html'">Help</button>
       <button id="disabled-audio" onclick="configureAudio('audio')">Sound: Off/On</button>
+      <button onclick="adjustVolume('audio')">Lower Music Volume</button>
     </div>
   </body>
   <script src="scripts/app.js"></script>

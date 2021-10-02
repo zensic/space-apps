@@ -97,6 +97,13 @@ body {
   font-size: 13px;
 }
 
+.volume-button-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 48%;
+}
+
 /*help start ------------------------------------------------------------------------------------------------------*/
 
 .help-div{

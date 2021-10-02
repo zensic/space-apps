@@ -45,6 +45,12 @@ body {
   width: 100%;
 }
 
+.avatar-image{
+  width: 80%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
 .avatar button {
   width: 25%;
   margin: 0.5rem 0;

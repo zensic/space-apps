@@ -90,6 +90,10 @@ body {
   border-radius: var(--radius);
 }
 
+.avatar-name {
+  text-transform: capitalize;
+}
+
 #avatar-desc {
   width: 90%;
   height: 95%;
@@ -114,6 +118,7 @@ body {
   cursor: pointer;
 }
 
+/*
 .back-button {
 
 }
@@ -121,6 +126,7 @@ body {
 .continue-button {
 
 }
+*/
 /*avatar selection end ------------------------------------------------------------------------------------------------------*/
 
 /* gameplay page start ------------------------------------------------------------------------------------------------------*/

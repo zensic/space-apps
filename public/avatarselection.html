@@ -21,26 +21,32 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script>
+      var avatar = ["astronaut"];
+    </script>
   </head>
   <body>
     <div class="main">
       <h2 class="text-center">Choose an avatar</h2>
       <div class="avatar">
-        <button onclick="getAvatar('scientist')">Scientist</button>
-        <button onclick="getAvatar('engineer')">Engineer</button>
-        <button onclick="getAvatar('astronaut')">Astronaut</button>
-        <button onclick="getAvatar('biologist')">Biologist</button>
+        <button onclick="setAvatar('astronaut', avatar)">Astronaut</button>
+        <button onclick="setAvatar('biologist', avatar)">Biologist</button>
+        <button onclick="setAvatar('engineer', avatar)">Engineer</button>
+        <button onclick="setAvatar('scientist', avatar)">Scientist</button>
       </div>
 
       <div id="avatar-view" class="avatar">
         <!--Image-->
         <div id="avatar-img" class="red-border">
-          <img src="" />
+          <img src="images/astronaut.jpg" alt="astronaut"/>
         </div>
 
         <!--Description-->
         <div class="red-border avatar-desc-container">
-          <div id="avatar-desc">desc</div>
+          <div id="avatar-desc" class="red-border">
+            <h3 class="avatar-name">Astronaut</h3>
+            <p>Astronaut is important for space exploration because...</p>
+          </div>
         </div>
       </div>
 
@@ -48,7 +54,7 @@
         <button class="back-button" onclick="window.location.href='index.html'">
           Back to Main Menu
         </button>
-        <button class="continue-button" onclick="window.location.href='gameplay.html'">
+        <button class="continue-button" onclick="handleChoose(avatar[0])">
           Choose this Avatar
         </button>
       </div>

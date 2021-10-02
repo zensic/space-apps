@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
-    <link rel="icon" href="images/logo-icon.png"/>
     <title>Space Apps</title>
 
     <!-- update the version number as needed -->
@@ -22,11 +21,7 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <script>
-      document.getElementById('audio');
-      audio.volume = 0.2; //Set a fix volume value
-    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <style media="screen"></style>
 
@@ -39,20 +34,21 @@
     </style>
   </head>
   <body>
-    <audio id="audio" autoplay loop>
+    <audio id="audio" autoplay loop muted>
       <source src="audio/bgm1.mp3" type="audio/mpeg" />
     </audio>
-    <div class="main index">
-      <div id="game-logo-div">
-        <img src="images/game-logo.png" alt="logo" />
-      </div>
-      <p><em>Do you want to explore beyond Earth? </em></p>
-      <button onclick="window.location.href='avatarselection.html'">
-        Play Game
-      </button>
-      <button><a href="https://forms.gle/2fhAtrbgfzVDPgtL7" target="_blank" rel="noopener noreferrer" id="feedback-button">Feedback</a></button>
-      <button onclick="window.location.href='help.html'">Help</button>
-      <button id="disabled-audio" onclick="configureAudio('audio')">Sound: Off/On</button>
+    <div class="main">
+        <div class="help-div">
+            <h1><i class="fa fa-question-circle" aria-hidden="true"></i> How to Play</h1>
+            <hr/>
+            <p>Players must select an avatar before playing the game.</p>
+            <img src="images/19609.jpg" alt="help-picture"/>
+            <p>During the gameplay, players are to enter specific commands in the input field. The commands are 1, 2, 3, 4</p>
+            <img src="images/39625.jpg" alt="help-picture"/>
+            <div>
+                <button onclick="window.location.href='index.html'">Back to Menu</button>
+            </div>
+        </div>
     </div>
   </body>
   <script src="scripts/app.js"></script>

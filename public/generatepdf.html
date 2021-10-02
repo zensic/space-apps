@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Ended</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.1.0/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.1.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.1.0/firebase-database-compat.js"></script>
+    <script
+      defer
+      src="/__/firebase/9.1.0/firebase-firestore-compat.js"
+    ></script>
+    <script defer src="/__/firebase/9.1.0/firebase-storage-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style media="screen"></style>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $("#btnPrint").live("click", function () {
+            var divContents = $("#dvContainer").html();
+            var printWindow = window.open('', '', 'height="400" width="800"');
+            printWindow.document.write('<html><head><title>Certificate of completion</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            /*printWindow.document.body.style.backgroundImage = "url('./images/certificate.png')";
+            printWindow.document.body.style.backgroundRepeat = "no-repeat";
+            printWindow.document.body.style.backgroundSize = "auto";*/
+            
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        });
+    </script>
+  </head>
+  <body>
+      <form id="form1">
+        <div id="dvContainer">
+            <style>
+                *{margin:0; padding:0;}
+                #dv{position: relative; width: 90%; margin: 0 auto; top: 15%;}
+                #head{color:#fff545; position: absolute; top: 45%; width: 100%; text-align: center; font-size: 2rem;
+                }
+                @page { size: A4 landscape;}
+
+            </style>
+
+            <div id="dv">
+                <img src="./images/certificate.png" alt="Completion Certificate" id="cert"width="100%"/>
+                <p id="head">
+                    <strong>Mr. Tony Stark.</strong>
+                </p>
+            </div>
+        </div>
+
+        <input type="button" value="Print Div Contents" id="btnPrint" />
+      </form>
+  </body>
+</html>

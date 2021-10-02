@@ -28,69 +28,33 @@
     <div class="main">
       <h2 class="text-center">Choose an avatar</h2>
       <div class="avatar">
-        <button onclick="showDesc('scientist')">Scientist</button>
-        <button onclick="showDesc('engineer')">Engineer</button>
-        <button onclick="showDesc('astronaut')">Astronaut</button>
-        <button onclick="showDesc('biologist')">Biologist</button>
+        <button onclick="getAvatar('scientist')">Scientist</button>
+        <button onclick="getAvatar('engineer')">Engineer</button>
+        <button onclick="getAvatar('astronaut')">Astronaut</button>
+        <button onclick="getAvatar('biologist')">Biologist</button>
       </div>
 
       <div id="avatar-view" class="avatar">
         <!--Image-->
-        <div id="avatar-img" class="avatar-img">
+        <div id="avatar-img" class="red-border">
           <img src="" />
         </div>
 
         <!--Description-->
-        <div id="avatar-desc" class="type-out">desc</div>
+        <div class="red-border avatar-desc-container">
+          <div id="avatar-desc">desc</div>
+        </div>
       </div>
 
-      <button class="back-button" onclick="window.location.href='index.html'">
-        Back to Main Menu
-      </button>
+      <div class="avatar-button-container">
+        <button class="back-button" onclick="window.location.href='index.html'">
+          Back to Main Menu
+        </button>
+        <button class="continue-button" onclick="window.location.href='gameplay.html'">
+          Choose this Avatar
+        </button>
+      </div>
     </div>
-    <script>
-      function showDesc($avatar) {
-        switch ($avatar) {
-          case "scientist":
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].src = "images/scientist.jpg";
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].alt = "scientist";
-              document.getElementById("avatar-desc").innerHTML = "<strong>Scientist</strong><br>Scientist is important for space exploration because...";
-            break;
-          case "engineer":
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].src = "";
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].alt = "engineer";
-              document.getElementById("avatar-desc").innerHTML = "<strong>Engineer</strong><br>Engineer is important for space exploration because...";
-            break;
-          case "astronaut":
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].src = "";
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].alt = "astronaut";
-            document.getElementById("avatar-desc").innerHTML = "<strong>Astronaut</strong><br>Astronaut is important for space exploration because...";
-            break;
-          case "biologist":
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].src = "";
-            document
-              .getElementById("avatar-img")
-              .getElementsByTagName("img")[0].alt = "biologist";
-            document.getElementById("avatar-desc").innerHTML = "<strong>Biologist</strong><br>Biologist is important for space exploration because...";
-            break;
-        }
-      }
-    </script>
-
     <script src="scripts/app.js"></script>
   </body>
 </html>

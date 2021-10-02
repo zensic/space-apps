@@ -29,6 +29,11 @@ body {
   	opacity: 1;
 }
 
+#game-logo-div img{
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+
 /* For typing effect */
 .index p {
   overflow: hidden; 

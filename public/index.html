@@ -33,16 +33,19 @@
     </style>
   </head>
   <body>
+    <audio autoplay loop>
+      <source src="audio/bgm1.mp3" type="audio/mpeg" />
+    </audio>
     <div class="main index">
-      <h2 class="text-center">Voyage to Mars</h2>
+      <div id="game-logo-div">
+        <img src="images/game-logo.png" alt="logo" />
+      </div>
       <p><em>Do you want to explore beyond Earth? </em></p>
       <button onclick="window.location.href='avatarselection.html'">
         Play Game
       </button>
       <button onclick="window.location.href='feedback.html'">Feedback</button>
       <button onclick="window.location.href='help.html'">Help</button>
-      <button onClick="setTest()">Set Test</button>
-      <button onClick="getAvatar('scientist')">Get Test</button>
     </div>
   </body>
   <script src="scripts/app.js"></script>

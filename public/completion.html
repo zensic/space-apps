@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
-    <link rel="icon" href="images/logo-icon.png"/>
+    <link rel="icon" href="images/logo-icon.png" />
     <title>Completion</title>
 
     <!-- update the version number as needed -->
@@ -22,20 +22,28 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body id="completion-main">
     <div id="completion-card">
       <div class="completion-col-1">
         <h1 class="text-center" id="completion-title">
-         THANK YOU FOR PLAYING!<br/>
+          THANK YOU FOR PLAYING!<br />
         </h1>
         <h2 class="text-center" id="completion-title">
-          <br/><i class="fa fa-check-circle" aria-hidden="true"></i> HERE IS YOUR CERTIFICATE UPON COMPLETING THE GAME!
+          <br /><i class="fa fa-check-circle" aria-hidden="true"></i> HERE IS
+          YOUR CERTIFICATE UPON COMPLETING THE GAME!
         </h2>
         <div id="scene-div" class="completion-col-2">
-          <img src="images/completion.png" alt="Completion Image" id="completion-img"/>
+          <img
+            src="images/completion.png"
+            alt="Completion Image"
+            id="completion-img"
+          />
         </div>
       </div>
 
@@ -43,55 +51,84 @@
         Download PDF
       </button>
 
-      <button class="completion-btn" onclick="window.location.href='index.html'">
+      <button
+        class="completion-btn"
+        onclick="window.location.href='index.html'"
+      >
         Main Menu
       </button>
     </div>
 
     <!--PDF Generate part-->
-    <div id="cert-content" style = "display: none;">
-        <style>
-            *{margin:0; padding:0;}
-            #plyr-cert{position: relative; width: 90%; margin: 0 auto; top: 15%;}
-            #plyr-name{color:#fff545; position: absolute; top: 45%; width: 100%; text-align: center; font-size: 2rem;
-            }
-            
-            @media print{
-              @page {
-                margin: 0;
-                height: 100%;
-                width: 100%;
-                size: letter landscape;
-                -webkit-print-color-adjust: exact;
-                -moz-print-color-adjust: exact;
-                -ms-print-color-adjust: exact;
-                color-adjust: exact;
-              }
-            }
-        </style>
+    <div id="cert-content" style="display: none">
+      <style>
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        #plyr-cert {
+          position: relative;
+          width: 90%;
+          margin: 0 auto;
+          top: 15%;
+        }
+        #plyr-name {
+          color: #fff545;
+          position: absolute;
+          top: 45%;
+          width: 100%;
+          text-align: center;
+          font-size: 2rem;
+        }
 
-        <div id="plyr-cert">
-            <img src="./images/certificate.png" alt="Completion Certificate" id="cert"width="100%"/>
-            <p id="plyr-name">
-                <strong><span id="cert-username"></span></strong>
-            </p>
-        </div>
+        @media print {
+          @page {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            size: letter landscape;
+            -webkit-print-color-adjust: exact;
+            -moz-print-color-adjust: exact;
+            -ms-print-color-adjust: exact;
+            color-adjust: exact;
+          }
+        }
+      </style>
+
+      <div id="plyr-cert">
+        <img
+          src="./images/certificate.png"
+          alt="Completion Certificate"
+          id="cert"
+          width="100%"
+        />
+        <p id="plyr-name">
+          <strong><span id="cert-username"></span></strong>
+        </p>
+      </div>
     </div>
 
     <script src="scripts/app.js"></script>
     <!---PDF Cert JS-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-      <script type="text/javascript">
-        $("#btnPrint").live("click", function () {
-          var divContents = $("#cert-content").html();
-          var printWindow = window.open('', '', 'height="400" width="800"');
-          printWindow.document.write('<html><head><title>Certificate of completion - '+sessionStorage.getItem("name")+'</title>');
-          printWindow.document.write('</head><body >');
-          printWindow.document.write(divContents);
-          printWindow.document.write('</body></html>');
-          printWindow.document.close();
-          printWindow.print();
-        });
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+    ></script>
+    <script type="text/javascript">
+      $("#btnPrint").live("click", function () {
+        var divContents = $("#cert-content").html();
+        var printWindow = window.open("", "", 'height="400" width="800"');
+        printWindow.document.write(
+          "<html><head><title>Certificate of completion - " +
+            sessionStorage.getItem("name") +
+            "</title>"
+        );
+        printWindow.document.write("</head><body >");
+        printWindow.document.write(divContents);
+        printWindow.document.write("</body></html>");
+        printWindow.document.close();
+        printWindow.print();
+      });
     </script>
   </body>
 </html>

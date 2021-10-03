@@ -90,6 +90,7 @@ function handleChoose($sessionAvatar) {
 /* gameplay section start */
 const history = document.getElementById("command-history");
 const command_input = document.getElementById("command-input");
+var command_type = "scenario";
 var no_of_filler_tasks_executed = 0;
 
 // adds user command input to command history
@@ -100,36 +101,35 @@ function handleCommand(command) {
   history.scrollTop = history.scrollHeight;
 }
 
+// initializes enter button listener
 function initEnterListener($month, $stats) {
   command_input.addEventListener("keydown", (e) => {
     if (e.key == "Enter") {
       e.preventDefault();
-      handleCommand(command_input.value);
+      // prints command out to the terminal
+      handleCommand(command_input.value); 
 
-      if (no_of_filler_tasks_executed >= 3) {
-        no_of_filler_tasks_executed = 0;
-        getEffect($month, command_input.value, $stats);
-      } else {
-        var fish_fillet = `
-        You are free to explore! Here's what you can do:<br/>
-        1. Check Health<br/>
-        2. Check Radiation Levels<br/>
-        3. Eat fruits and vegetables<br/>
-        4. Exercise<br/>
-        5. Take radiation medicine<br/><br/>
-        `;
-        handleCommand(fish_fillet);
-        getFillerTask(command_input.value, $stats);
-        no_of_filler_tasks_executed += 1;
+      if (command_type == "scenario") {
+        // returns consequence of action
+        getEffect($month, command_input.value, $stats); 
+
+      } else if ((command_type = "filler")) {
+        // increase filler task count by 1
+        no_of_filler_tasks_executed += 1; 
+        getFillerTask($stats, $month);
       }
-      
+
       command_input.value = "";
     }
   });
 }
 
-function getFillerTask($index, $stats) {
-  var option = (parseInt(command_input.value - 1)).toString();
+// gets filler tasks, updates status window
+function getFillerTask($stats, $index) {
+  console.log(command_type + " received");
+  console.log($index + " received");
+
+  var option = parseInt(command_input.value - 1).toString();
   console.log("Filler Task no. " + option);
   const db = firebase.firestore();
   var docRef = db.collection("filler_task").doc(option);
@@ -177,8 +177,31 @@ function getFillerTask($index, $stats) {
           );
           response = doc.data().positive_respond;
         }
-
         handleCommand(response);
+
+        if (no_of_filler_tasks_executed < 3) {
+          var fish_fillet = `
+          You are free to explore! Here's what you can do:<br/>
+          1. Check Health<br/>
+          2. Check Radiation Levels<br/>
+          3. Eat fruits and vegetables<br/>
+          4. Exercise<br/>
+          5. Take radiation medicine<br/><br/>
+          `;
+
+          handleCommand(fish_fillet);
+        } else {
+          // change command_type back to scenario
+          command_type = "scenario";
+
+          // reset filler task counter
+          no_of_filler_tasks_executed = 0;
+
+          console.log("Getting next scenario");
+
+          // goes to the next scenario
+          getScenario($index[0].toString());
+        }
       }
     })
     .catch((error) => {
@@ -249,8 +272,19 @@ function getStats($index, $action, $stats) {
         // advance to next month
         $index[0] = $index[0] + 1;
 
-        // goes to the next scenario
-        getScenario($index[0].toString());
+        // change command_type back to filler
+        command_type = "filler";
+
+        // add filler tasks        
+        var fish_fillet = `
+        You are free to explore! Here's what you can do:<br/>
+        1. Check Health<br/>
+        2. Check Radiation Levels<br/>
+        3. Eat fruits and vegetables<br/>
+        4. Exercise<br/>
+        5. Take radiation medicine<br/><br/>
+        `;
+        handleCommand(fish_fillet);
       } else {
         console.log("No such document!");
       }

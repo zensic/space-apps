@@ -331,7 +331,32 @@ body {
 }
 
 #command-history {
+  margin: 0.5rem 0;
   scroll-behavior: smooth;
+}
+
+#av-stat-btn{
+  margin:0;
+  padding: 0;
+  border-radius: var(--radius);
+}
+
+#command-title {
+  display: inline-flex;
+  padding: 1rem;
+  margin: 0;
+  background-color: var(--bg-primary);
+  border-radius: var(--radius);
+}
+
+#command-heading {
+}
+
+#avatar-icon{
+  margin-right: 2rem;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
 }
 
 .modal {

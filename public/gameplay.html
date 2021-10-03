@@ -37,10 +37,14 @@
     </script>
   </head>
   <body>
-    <audio id="audio" autoplay loop>
+    <audio id="gameplay-audio" autoplay loop>
       <source src="audio/bgm2.mp3" type="audio/mpeg" />
     </audio>
-    
+    <script>
+      const audio = document.getElementById("gameplay-audio");
+      audio.volume = 0.2;
+    </script>
+
     <div class="main">
       <h2 class="game-title">Journey To Mars</h2>
       <div class="game-container">
@@ -48,12 +52,21 @@
           <div class="game-info">
             <h3>Month: <span id="game-month">1</span></h3>
             <div id="scene-div">
-              <img src="images/biologist.jpg" alt="scene" />
+              <img src="images/biologist.jpg" alt="Avatar" />
             </div>
           </div>
         </div>
         <div class="col-2">
-          <h3>Command Center</h3>
+          <div id="command-title">
+            <h2 id="command-heading">
+              Command Center
+              
+              
+              
+            </h2>
+            <img src="images/biologist-icon.png" alt="Avatar" id="avatar-icon" />
+          </div>
+
           <div id="command-history" class="col-2-1"></div>
           <div class="col-2-2">
             <input
@@ -66,7 +79,7 @@
         </div>
       </div>
     </div>
-    <button data-modal-target="#modal">Open Modal</button>
+
     <div class="modal" id="modal">
       <div class="modal-header">
         <div class="title">Status Levels</div>
@@ -102,11 +115,6 @@
     <script>
       initEnterListener(month, stats);
       initScenario();
-      document.getElementById('hp').innerHTML = stats.hp;
-      document.getElementById('mm').innerHTML = stats.mm;
-      document.getElementById('bm').innerHTML = stats.bm;
-      document.getElementById('rl').innerHTML = stats.rl;
-      document.getElementById('sl').innerHTML = stats.sl;
     </script>
   </body>
 </html>

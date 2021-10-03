@@ -43,12 +43,38 @@ function setTest() {
     });
 }
 
+function initAvatar() {
+  document
+  .getElementById("avatar-desc")
+  .getElementsByTagName("p")[0].innerHTML =  `Astronaut is an individual who is trained, equipped and deployed by a human spaceflight program to serve as a commander or crew member aboard a spacecraft.<br/><br/><em>Terminology</em><br/>
+
+  <br/>- Astronaut - Known as a professional space traveler.
+  <br/>- Cosmonaut - Astronaut employed by the Russian Federal Space Agency (or its Soviet predecessor)
+  <br/>- Taikonaut - For professional space travelers from China.
+  <br/>- Parastronaut - European Space Agency envisions recruiting an astronaut with a physical disability.<br/>
+  
+  <br/><strong><em>Info:</em></strong><br/>On the 12th of April 1961, a gentleman who was known as Yuri Gagarin became the first human to journey into outer space.
+  <br/><br/>
+  You can find more information <a href="https://en.wikipedia.org/wiki/Astronaut" target="_blank">here</a>.`;
+}
+
 /* avatar selection start */
-function setAvatar($avatar, $sessionAvatar) {
+function setAvatar($avatar, $sessionAvatar, $btnID) {
   $sessionAvatar[0] = $avatar; // assign avatr to session avatar
 
   const db = firebase.firestore();
   var docRef = db.collection("avatar").doc($avatar);
+  const btnList = ['astronaut-btn','biologist-btn','engineer-btn','scientist-btn'];
+  for (i = 0; i < btnList.length; i++) {
+    if($btnID == btnList[i]){
+      document.getElementById(btnList[i]).style.backgroundColor = "#00ff41";
+      document.getElementById(btnList[i]).style.fontWeight = "bold";
+    }else{
+      document.getElementById(btnList[i]).style.backgroundColor = "white";
+      document.getElementById(btnList[i]).style.fontWeight = "normal";
+    }  
+  }
+
 
   docRef
     .get()
@@ -70,7 +96,6 @@ function setAvatar($avatar, $sessionAvatar) {
         } else {
           console.log("No avatar data found!");
         }
-        //return [doc.data().image, doc.data().description];
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -79,8 +104,6 @@ function setAvatar($avatar, $sessionAvatar) {
     .catch((error) => {
       console.log("Error getting document:", error);
     });
-
-  return [];
 }
 
 /*function handleChoose($sessionAvatar) {
@@ -88,44 +111,44 @@ function setAvatar($avatar, $sessionAvatar) {
   window.location.href = "gameplay.html";
 }*/
 
-const openModalButtons = document.querySelectorAll('[data-modal-target]')
-const closeModalButtons = document.querySelectorAll('[data-close-button]')
-const overlay = document.getElementById('overlay')
+const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const closeModalButtons = document.querySelectorAll("[data-close-button]");
+const overlay = document.getElementById("overlay");
 
-openModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = document.querySelector(button.dataset.modalTarget)
-    openModal(modal)
-  })
-})
+openModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = document.querySelector(button.dataset.modalTarget);
+    openModal(modal);
+  });
+});
 
-overlay.addEventListener('click', () => {
-  const modals = document.querySelectorAll('.modal.active')
-  modals.forEach(modal => {
-    closeModal(modal)
-  })
-})
+overlay.addEventListener("click", () => {
+  const modals = document.querySelectorAll(".modal.active");
+  modals.forEach((modal) => {
+    closeModal(modal);
+  });
+});
 
-closeModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = button.closest('.modal')
-    closeModal(modal)
-  })
-})
+closeModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = button.closest(".modal");
+    closeModal(modal);
+  });
+});
 
 function openModal(modal) {
-  if (modal == null) return
-  modal.classList.add('active')
-  overlay.classList.add('active')
+  if (modal == null) return;
+  modal.classList.add("active");
+  overlay.classList.add("active");
 }
 
 function closeModal(modal) {
-  if (modal == null) return
-  modal.classList.remove('active')
-  overlay.classList.remove('active')
+  if (modal == null) return;
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
 }
 
-function setPlyrDetails($avatar){
+function setPlyrDetails($avatar) {
   const plyrName = document.getElementById("avatarNm").value;
   sessionStorage.setItem("name", plyrName);
   sessionStorage.setItem("avatar", $avatar);
@@ -158,16 +181,44 @@ function initEnterListener($month, $stats) {
       if (command_type == "scenario") {
         // returns consequence of action
         getEffect($month, command_input.value, $stats);
-        
       } else if ((command_type = "filler")) {
         // increase filler task count by 1
         no_of_filler_tasks_executed += 1;
         getFillerTask($stats, $month);
       }
 
+      // option count + 1
+      if (
+        command_input.value == 1 ||
+        command_input.value == 2 ||
+        command_input.value == 3
+      ) {
+        addOptionCount(command_input.value);
+      }
+
       command_input.value = "";
     }
   });
+}
+
+// option count + 1
+function addOptionCount(option) {
+  console.log("setTestddd fired!");
+  const db = firebase.firestore();
+  const incre = firebase.firestore.FieldValue.increment(1);
+
+  // Add 1 count to the selected option
+  db.collection("option_count")
+    .doc(option)
+    .update({
+      count: incre,
+    })
+    .then(() => {
+      console.log("Document successfully written!");
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
 }
 
 // gets filler tasks, updates status window
@@ -267,7 +318,8 @@ function getSlctAvatarDetails() {
         if (doc.exists) {
           avatarImg = doc.data().iconImage;
           document.getElementById("avatar-icon").src = avatarImg;
-          document.getElementById("player-stat").innerHTML = plyrNm  + "'s Status";
+          document.getElementById("player-stat").innerHTML =
+            plyrNm + "'s Status";
         } else {
           console.log("No such document!");
         }
@@ -288,7 +340,6 @@ function getScenario($index) {
       if (doc.exists) {
         handleCommand(doc.data().detail);
         document.getElementById("scenario-img").src = doc.data().image;
-        
       } else {
         console.log("No such document!");
       }
@@ -338,7 +389,7 @@ function getStats($index, $action, $stats) {
           // if not alive game over
           window.location.href = "gameover.html";
         }
-        
+
         // check if enough turns have passed
         if (checkMonths($index[0])) {
           // if not alive game over
@@ -386,6 +437,8 @@ function getEffect($index, $action, $stats) {
     case "3":
       var sAction = "action-3";
       break;
+    default:
+      return "";
   }
 
   const db = firebase.firestore();
@@ -402,7 +455,6 @@ function getEffect($index, $action, $stats) {
 
         // updates the whole stats
         getStats($index, $action, $stats);
-
       } else {
         console.log("No such document!");
       }
@@ -507,10 +559,10 @@ function initScenario() {
 }
 /* gameplay section end */
 
-
 /*Completion section start--------------------------------*/
-function setCertName(){
-  document.getElementById("cert-username").innerHTML = sessionStorage.getItem("name");
+function setCertName() {
+  document.getElementById("cert-username").innerHTML =
+    sessionStorage.getItem("name");
 }
 
 /*Completion section ends---------------------------------*/

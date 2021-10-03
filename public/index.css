@@ -172,7 +172,7 @@ body {
 
 .avatar button {
   width: 25%;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0.25rem;
   padding: 0.5rem 0;
   border: none;
   transform: var(--transition-speed);
@@ -180,8 +180,8 @@ body {
 
 .avatar button:hover {
   cursor: pointer;
-  color: var(--text-primary);
-  background-color: black;
+  background-color: #00ff41;
+  font-weight: bold;
 }
 
 .avatar-container {
@@ -218,6 +218,7 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius);
+  background-color: gray;
 }
 
 .avatar-name {
@@ -227,7 +228,7 @@ body {
 #avatar-desc {
   width: 90%;
   height: 95%;
-  overflow:overlay
+  overflow: overlay;
 }
 
 .avatar-button-container {
@@ -247,8 +248,15 @@ body {
 
 .avatar-button-container button:hover {
   cursor: pointer;
-  color: var(--text-primary);
-  background-color: black;
+  background-color: #00ff41;
+  font-weight: bold;
+}
+
+#avatarNm {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  width: 100%;
 }
 
 /*avatar selection end ------------------------------------------------------------------------------------------------------*/
@@ -454,7 +462,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   pointer-events: none;
 }
 
@@ -463,20 +471,20 @@ body {
   pointer-events: all;
 }
 
-#submit{
+#submit {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
 }
 
-#submit-button{
+#submit-button {
   border-radius: var(--radius);
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem 0;
   border: none;
+  cursor: pointer;
 }
-
 
 #submit-button:hover {
   font-weight: bold;
@@ -484,26 +492,44 @@ body {
   transition: 0.2s;
   border-radius: var(--radius);
   background-color: black;
-  color:#00ff41;
+  color: #00ff41;
 }
 
 /* gameplay page end ------------------------------------------------------------------------------------------------------*/
 
 /* End Scene Start------------------------------------------------------*/
 .end-game-container {
+  min-height: 100%;
+  min-height: 100vh;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
-#end-card{
-  padding: 4rem 0rem;
-  margin-bottom: 2rem;
-  background-color: black;
+.end-game-container > div {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.end-game-container > div > div {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(255, 255, 255, 0.5);
   border-radius: 0.3rem;
 }
 
-#end-title, #end-subtitle{
+#end-card {
+  background-image: url(https://i.imgflip.com/shswj.jpg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-color: black;
+  border: 1px solid black;
+  margin-bottom: 1rem;
+  padding: 4rem 2rem;
+  height: 250px;
+}
+
+#end-title,
+#end-subtitle {
   color: #00ff41;
 }
 
@@ -515,22 +541,32 @@ body {
   text-transform: capitalize;
 }
 
-.end-col-1 {
-  width: 100%;
-  background-color: black;
-  margin: 1rem;
+#end-didyouknow {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background-image: url(images/vostok-landing.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 1rem;
 }
 
-.end-col-2 {
-  width: 100%;
-  background-color: var(--text-primary);
-  margin: 1rem;
+#end-didyouknow>div{
+  padding: 1rem;
+  height: 200px;
+}
+
+#end-didyouknow h1, #end-didyouknow p{
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .end-btn {
   width: 100%;
   padding: 1rem;
-  margin: 0.5rem 0;
+  margin-top: 0.5rem;
+
+  position: relative;
+  top: 50px;
 }
 
 .red-border {
@@ -539,27 +575,60 @@ body {
 /* End Scene End------------------------------------------------------*/
 
 /* Credits Start------------------------------------------------------*/
-.credit-card {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem 0;
-}
-
-.credit-card-wave {
-  width: 10%;
-  padding: 2rem 0;
-  text-align: center;
-  border-radius: var(--radius);
-  background-color: rgba(0, 0, 255, 0.4);
-}
-
 .credit-card-desc {
-  width: 85%;
-  padding: 2rem 0;
-  padding-left: 1rem;
+  width: 100%;
+  padding: 1rem 0;
+  margin: 0.5rem 0;
+  display: flex;
   border-radius: var(--radius);
-  background-color: var(--text-primary);
+  background-color: #00ff41;
+}
+
+.t1 {
+  animation-name: colors;
+  animation-duration: 2.5s;
+}
+
+.t2 {
+  animation-name: colors;
+  animation-duration: 3s;
+}
+
+.t3 {
+  animation-name: colors;
+  animation-duration: 3.5s;
+}
+
+@keyframes colors {
+  0% {
+    background-color: #fff44f;
+    transform: translateX(-100%);
+  }
+  50% {
+    background-color: #fff44f;
+  }
+  75% {
+    background-color: #7ee8fa;
+  }
+  100% {
+    background-color: #00ff41;
+  }
+}
+
+@keyframes position {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.credit-card-desc p {
+  color: black;
+  padding: 1rem 0;
+  margin: auto;
+  text-align: center;
 }
 
 .credit-end {
@@ -570,23 +639,156 @@ body {
 }
 
 .credit-button {
-  padding: 1rem 2rem;
-  margin: 1rem 0;
-  text-align: center;
-  cursor: pointer;
+  width: 25%;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
   border: none;
-  border-radius: var(--radius);
-  background-color: var(--text-primary);
+  transform: var(--transition-speed);
 }
+
+.credit-button:hover {
+  cursor: pointer;
+  color: var(--text-primary);
+  background-color: black;
+}
+
 /* Credits End------------------------------------------------------*/
 
 /*Gameover Start---------------------------------------------------*/
-#gameover-img{
+#gameover-img {
+  width: 70%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+#gameover-main {
+  background-color: black;
+}
+
+#gameover-title,
+#gameover-subtitle {
+  color: #00ff41;
+}
+
+#gameover-title {
+  text-transform: uppercase;
+}
+
+.gameover-col-1 {
   width: 100%;
-  height: 2rem;
+  background-color: black;
+  margin: 1rem;
+}
+
+.gameover-col-2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameover-btn {
+  font-size: 1.2rem;
+  border-radius: var(--radius);
+  border: none;
+  width: 40rem;
+  padding: 1rem;
+  margin: 1rem 0 2rem 0;
+  cursor: pointer;
+}
+
+.gameover-btn:hover {
+  font-weight: bold;
+  font-size: 1.4rem;
+  transition: 0.2s;
+  border-radius: var(--radius);
+  background-color: #00ff41;
+  color: black;
 }
 
 /*Gameover End-----------------------------------------------------*/
 
-@media only screen and (max-width: 1000px) {
+/*Completion Start----------------------------------------------------*/
+#completion-main {
+  background-color: black;
+  background-image: url("images/39625.jpg");
+  background-size: cover;
+}
+
+#completion-card {
+  vertical-align: middle;
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  background-color: black;
+  border-radius: var(--radius);
+}
+
+#completion-img {
+  width: 30rem;
+  height: 27rem;
+  border-radius: var(--radius);
+  border-radius: 60%;
+  margin-top: 1rem;
+}
+
+#completion-title {
+  color: #00ff41;
+  text-transform: uppercase;
+}
+
+.completion-col-1 {
+  background-color: black;
+  margin: 1rem;
+}
+
+.completion-col-2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.completion-btn {
+  font-size: 1.2rem;
+  border-radius: var(--radius);
+  border: none;
+  width: 35rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.completion-btn:hover {
+  font-weight: bold;
+  font-size: 1.4rem;
+  transition: 0.2s;
+  border-radius: var(--radius);
+  background-color: #00ff41;
+  color: black;
+}
+/*Completion End-------------------------------------------------------*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff41;
 }

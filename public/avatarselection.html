@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
-    <link rel="icon" href="images/logo-icon.png"/>
+    <link rel="icon" href="images/logo-icon.png" />
     <title>Space Apps</title>
 
     <!-- update the version number as needed -->
@@ -25,37 +25,50 @@
     <script>
       var avatar = ["astronaut"];
     </script>
+    <style>
+      body {
+        background: #eceff1;
+        background-image: url("images/39625.jpg");
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
     <audio id="avatar-audio" autoplay loop>
-      <source src="audio/bgm3.mp3" type="audio/mpeg"/>
+      <source src="audio/bgm3.mp3" type="audio/mpeg" />
     </audio>
     <script>
       const audio = document.getElementById("avatar-audio");
       audio.volume = 0.2;
-      if(sessionStorage.getItem("audio") == "off") { audio.pause(); }
+      if (sessionStorage.getItem("audio") == "off") {
+        audio.pause();
+      }
     </script>
     <div class="main">
-      <h2 class="text-center">Choose an Avatar</h2>
+      <h2 class="game-title text-center">Choose an Avatar</h2>
       <div class="avatar">
-        <button onclick="setAvatar('astronaut', avatar)">Astronaut</button>
-        <button onclick="setAvatar('biologist', avatar)">Biologist</button>
-        <button onclick="setAvatar('engineer', avatar)">Engineer</button>
-        <button onclick="setAvatar('scientist', avatar)">Scientist</button>
+        <button id="astronaut-btn" onclick="setAvatar('astronaut', avatar, 'astronaut-btn')">Astronaut</button>
+        <button id="biologist-btn" onclick="setAvatar('biologist', avatar, 'biologist-btn')">Biologist</button>
+        <button id="engineer-btn" onclick="setAvatar('engineer', avatar, 'engineer-btn')">Engineer</button>
+        <button id="scientist-btn" onclick="setAvatar('scientist', avatar, 'scientist-btn')">Scientist</button>
       </div>
 
       <div id="avatar-view" class="avatar">
         <!--Image-->
         <div id="avatar-img" class="">
-          <img src="images/astronaut.jpg" class="avatar-image" alt="astronaut"/>
+          <img
+            src="images/astronaut.jpg"
+            class="avatar-image"
+            alt="astronaut"
+          />
         </div>
 
         <!--Description-->
-        <div class="red-border avatar-desc-container">
+        <div class="avatar-desc-container">
           <div id="avatar-desc" class="">
-            <h3 class="avatar-name">Astronaut</h3>
-            <p>Astronaut is an individual who is trained, equipped and deployed by a human spaceflight program to serve as a commander or crew member aboard a spacecraft.<br/><br/>Terminology<br/>
-              - Astronaut - Known as a professional space traveler.<br/>- Cosmonaut - Astronaut employed by the Russian Federal Space Agency (or its Soviet predecessor)<br/> - Taikonaut - For professional space travelers from China.<br/>- Parastronaut - European Space Agency envisions recruiting an astronaut with a physical disability.<br/><br/>On the 12th of April 1961, a gentleman who was known as Yuri Gagarin became the first human to journey into outer space.</p>
+            <h3 class="game-title avatar-name">Astronaut</h3>
+            <p class="game-title">
+            </p>
           </div>
         </div>
       </div>
@@ -75,20 +88,32 @@
           <button data-close-button class="close-button">&times;</button>
         </div>
         <div class="modal-body">
+          <label for="avatarNm"><strong>Name:</strong></label>
+          <input
+            type="text"
+            placeholder="Albert Einstein"
+            name="avatarNm"
+            id="avatarNm"
+            required="required"
+          />
 
-            <label for="avatarNm"><strong>Name:</strong></label>
-            <input type="text" placeholder="Albert Einstein" name="avatarNm" id="avatarNm"  required="required">
-
-            <div id="submit">
-              <button type="submit" name="submitName" id="submit-button" onclick="setPlyrDetails(avatar[0])">Start your journey</button>
-            </div>
+          <div id="submit">
+            <button
+              type="submit"
+              name="submitName"
+              id="submit-button"
+              onclick="setPlyrDetails(avatar[0])"
+            >
+              Start your journey
+            </button>
+          </div>
         </div>
       </div>
 
       <div id="overlay"></div>
-
     </div>
     <script src="scripts/app.js"></script>
+    <script>initAvatar();</script>
   </body>
   <!--Credit for the images
   <a href="https://www.freepik.com/vectors/woman%22%3EWoman vector created by pikisuperstar - www.freepik.com</a>

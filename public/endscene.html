@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
-    <title>Ended</title>
+    <link rel="icon" href="images/logo-icon.png" />
+    <title>Landed</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/9.1.0/firebase-app-compat.js"></script>
@@ -23,37 +24,46 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
     <style media="screen"></style>
+    <style>
+      body {
+        background: #eceff1;
+        background-image: url("images/39625.jpg");
+        background-size: cover;
+      }
+    </style>
   </head>
 
   <body>
-    <div class="main">
-      <div id="end-card">
-        <h1 id="end-title">congratulations!</h1>
-        <p id="end-subtitle">
-          you have survived and you have successfully landed on deez nuts
-        </p>
+    <div class="end-game-container">
+      <div>
+        <div id="end-card">
+          <h1 id="end-title">congratulations!</h1>
+          <p id="end-subtitle">
+            you have survived and you have successfully landed on Earth
+          </p>
+          <button class="end-btn" onclick="window.location.href='credits.html'">
+            Proceed
+          </button>
+        </div>
+
+        <div id="end-didyouknow">
+          <div>
+            <h2>Did you know?</h2>
+            <p>Vostok 1 was the <strong>first</strong> spacecraft to carry a human into space.</p>
+            <p>The background image shown here is the landed image of Vostok 1.</p>
+          </div>
+        </div>
       </div>
+
       <!--
       <div class="end-col-1">
         <h1 class="text-center" id="end-title">
           you have survived and you have successfully landed on earth
         </h1>
       </div>
-      <div id="scene-div" class="end-col-2">
-        <img src="images/vostok-landing.jpg" alt="Landed Image" />
-        <p class="text-center">
-          <em
-            >Do you know?<br />Vostok 1 was the first spacecraft to carry a
-            human into space.<br />Above is the landed image of Vostok 1.</em
-          >
-        </p>
-      </div>
 
-    -->
-      <button class="end-btn" onclick="window.location.href='credits.html'">
-        Proceed
-      </button>
-    </div>
+
+    --></div>
     <script src="scripts/app.js"></script>
   </body>
 </html>

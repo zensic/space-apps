@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="images/logo-icon.png"/>
     <title>Credits</title>
 
     <!-- update the version number as needed -->
@@ -21,26 +22,37 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style>
+      body {
+        background: #eceff1;
+        background-image: url("images/39625.jpg");
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
     <div class="main">
-      <h2>What did others pick?</h2>
-      <div class="credit-card">
-        <div class="credit-card-wave">1</div>
-        <div class="credit-card-desc">87% OF PLAYERS CHOSE "THIS OPTION"</div>
+      <h2 class="game-title">What did other players pick?</h2>
+      <div class="credit-card-desc t1">
+        <p><strong>89% OF PLAYERS CHOSE "TO IGNORE THE MALFUNCTIONING THRUSTERS"</strong></p>
       </div>
-      <div class="credit-card">
-        <div class="credit-card-wave">2</div>
-        <div class="credit-card-desc">57% OF PLAYERS CHOSE "THIS OPTION"</div>
+      <div class="credit-card-desc t2">
+        <p><strong>67% OF PLAYERS CHOSE "TO ADMIRE THE DUSTSTORM"</strong></p>
       </div>
-      <div class="credit-card">
-        <div class="credit-card-wave">3</div>
-        <div class="credit-card-desc">69% OF PLAYERS SURVIVED THIS WAVE</div>
+      <div class="credit-card-desc t3">
+        <p><strong>35% OF PLAYERS SURVIVED A TRIP BACK EARTH</strong></p>
       </div>
       <div class="credit-end">
-        <button class="credit-button" onclick="window.location.href='completion.html'">END GAME</button>
+        <button
+          class="credit-button"
+          onclick="window.location.href='completion.html'"
+        >
+          END GAME
+        </button>
       </div>
     </div>
+
     <script src="scripts/app.js"></script>
   </body>
 </html>

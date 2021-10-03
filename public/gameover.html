@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="images/logo-icon.png"/>
     <title>Gameover</title>
 
     <!-- update the version number as needed -->
@@ -21,22 +22,23 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <style media="screen"></style>
   </head>
 
-  <body>
+  <body id="gameover-main">
     <div class="main">
-      <div class="end-col-1">
-        <h1 class="text-center" id="end-title">
-          You did not survive in the journey
+      <div class="gameover-col-1">
+        <h1 class="text-center" id="gameover-title">
+          <i class="fa fa-times" aria-hidden="true"></i> Gameover <i class="fa fa-times" aria-hidden="true"></i><br/> You did not survive the journey to Mars..
         </h1>
       </div>
-      <div id="scene-div" class="end-col-2">
-        <img src="images/gameover.png" alt="Landed Image" id="gameover-img"/>
+      <div id="scene-div" class="gameover-col-2">
+        <img src="images/gameover.png" alt="Gameover Image" id="gameover-img"/>
       </div>
 
-      <button class="end-btn" onclick="window.location.href='index.html'">
+      <button class="gameover-btn" onclick="window.location.href='index.html'">
         Main Menu
       </button>
     </div>

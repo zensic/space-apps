@@ -3,15 +3,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
   console.log("Firebase initialized!");
 });
 
-var soundCheck = true;
+var soundCheck = false;
 function configureAudio(audioID) {
   const audio = document.getElementById(audioID);
   if (soundCheck == true) {
     soundCheck = false;
     audio.pause();
+    document.getElementById("toggleSound").innerHTML = "Off";
+    sessionStorage.setItem("audio", "off");
   } else if (soundCheck == false) {
     soundCheck = true;
     audio.play();
+    document.getElementById("toggleSound").innerHTML = "On";
+    sessionStorage.setItem("audio", "on");
   }
 }
 
@@ -79,8 +83,52 @@ function setAvatar($avatar, $sessionAvatar) {
   return [];
 }
 
-function handleChoose($sessionAvatar) {
+/*function handleChoose($sessionAvatar) {
   sessionStorage.setItem("avatar", $sessionAvatar);
+  window.location.href = "gameplay.html";
+}*/
+
+const openModalButtons = document.querySelectorAll('[data-modal-target]')
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
+const overlay = document.getElementById('overlay')
+
+openModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = document.querySelector(button.dataset.modalTarget)
+    openModal(modal)
+  })
+})
+
+overlay.addEventListener('click', () => {
+  const modals = document.querySelectorAll('.modal.active')
+  modals.forEach(modal => {
+    closeModal(modal)
+  })
+})
+
+closeModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal')
+    closeModal(modal)
+  })
+})
+
+function openModal(modal) {
+  if (modal == null) return
+  modal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+  if (modal == null) return
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
+}
+
+function setPlyrDetails($avatar){
+  const plyrName = document.getElementById("avatarNm").value;
+  sessionStorage.setItem("name", plyrName);
+  sessionStorage.setItem("avatar", $avatar);
   window.location.href = "gameplay.html";
 }
 /* avatar selection end */
@@ -110,6 +158,7 @@ function initEnterListener($month, $stats) {
       if (command_type == "scenario") {
         // returns consequence of action
         getEffect($month, command_input.value, $stats);
+        
       } else if ((command_type = "filler")) {
         // increase filler task count by 1
         no_of_filler_tasks_executed += 1;
@@ -185,7 +234,6 @@ function getFillerTask($stats, $index) {
           4. Exercise<br/>
           5. Take radiation medicine</em><br/><br/>
           `;
-
           handleCommand(fish_fillet);
         } else {
           // change command_type back to scenario
@@ -193,8 +241,6 @@ function getFillerTask($stats, $index) {
 
           // reset filler task counter
           no_of_filler_tasks_executed = 0;
-
-          console.log("Getting next scenario");
 
           // goes to the next scenario
           getScenario($index[0].toString());
@@ -206,30 +252,22 @@ function getFillerTask($stats, $index) {
     });
 }
 
-// adds one to the count and updates the dom
-function addMonth($month) {
-  $month[0] = $month[0] + 1;
-  document.getElementById("game-month").innerHTML = $month[0];
-}
-
 //Pass in selected avatar
-function getSlctAvatarImg() {
-
+function getSlctAvatarDetails() {
   document.addEventListener("DOMContentLoaded", (e) => {
-    var avatarImg = '';
+    var avatarImg = "";
     var slctAvatar = sessionStorage.getItem("avatar");
-  
+    var plyrNm = sessionStorage.getItem("name");
+
     const db = firebase.firestore();
     const docRef = db.collection("avatar").doc(slctAvatar);
     docRef
       .get()
       .then((doc) => {
         if (doc.exists) {
-          avatarImg = doc.data().icon-image;
-
-          console.log(doc.data().icon-image);
-
-          document.getElementById("avatar-icon").src=avatarImg;
+          avatarImg = doc.data().iconImage;
+          document.getElementById("avatar-icon").src = avatarImg;
+          document.getElementById("player-stat").innerHTML = plyrNm  + "'s Status";
         } else {
           console.log("No such document!");
         }
@@ -238,21 +276,6 @@ function getSlctAvatarImg() {
         console.log("Error getting document:", error);
       });
   });
-
-  /*switch(slctAvatar) {
-    case 'astronaut':
-      avatarImg = '';
-      break;
-    case 'biologist':
-      // code block
-      break;
-    case 'engineer':
-      // code block
-      break;
-    case 'scientist':
-      // code block
-      break;
-  }*/
 }
 
 // gets the scenario and updates the dom
@@ -263,8 +286,9 @@ function getScenario($index) {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        console.log(doc.data().detail);
         handleCommand(doc.data().detail);
+        document.getElementById("scenario-img").src = doc.data().image;
+        
       } else {
         console.log("No such document!");
       }
@@ -309,8 +333,21 @@ function getStats($index, $action, $stats) {
 
         updateStatus(eHp, eMm, eBm, eRl, eSl, $stats);
 
+        // check if player is alive
+        if (!checkStatus($stats)) {
+          // if not alive game over
+          window.location.href = "gameover.html";
+        }
+        
+        // check if enough turns have passed
+        if (checkMonths($index[0])) {
+          // if not alive game over
+          window.location.href = "endscene.html";
+        }
+
         // advance to next month
         $index[0] = $index[0] + 1;
+        document.getElementById("game-month").innerHTML = $index[0].toString();
 
         // change command_type back to filler
         command_type = "filler";
@@ -366,8 +403,6 @@ function getEffect($index, $action, $stats) {
         // updates the whole stats
         getStats($index, $action, $stats);
 
-        // goes to the next scenario
-        // getScenario($index[0].toString());
       } else {
         console.log("No such document!");
       }
@@ -431,26 +466,37 @@ function updateStatus($hp, $mm, $bm, $rl, $sl, $stsArr) {
   document.getElementById("bm").innerHTML = $stsArr["bm"];
   document.getElementById("rl").innerHTML = $stsArr["rl"];
   document.getElementById("sl").innerHTML = $stsArr["sl"];
+
+  //Lead player to gameover page when checkStatus return false
+  if (!checkStatus($stsArr)) {
+    window.location.href = "gameover.html";
+  }
 }
 
 // if status < 100 / status > 100, returns true if alive, false if dead
 function checkStatus($stats) {
-  if ($stats["hp"] < 0) {
+  if ($stats["hp"] < 1) {
     return false;
-  } else if ($stats["mm"] < 0) {
+  } else if ($stats["mm"] < 1) {
     return false;
-  } else if ($stats["bm"] < 0) {
+  } else if ($stats["bm"] < 1) {
     return false;
-  } else if ($stats["rl"] > 100) {
+  } else if ($stats["rl"] > 99) {
     return false;
-  } else if ($stats["sl"] > 100) {
+  } else if ($stats["sl"] > 99) {
     return false;
   }
   return true;
 }
 
 // if no. of months > 3 years, player reaches mars, return true, else return false
-function checkMonths($months) {}
+function checkMonths($months) {
+  console.log("Month: " + $months);
+  if ($months > 4) {
+    return true;
+  }
+  return false;
+}
 
 // initialize first scenario
 function initScenario() {
@@ -460,3 +506,11 @@ function initScenario() {
   });
 }
 /* gameplay section end */
+
+
+/*Completion section start--------------------------------*/
+function setCertName(){
+  document.getElementById("cert-username").innerHTML = sessionStorage.getItem("name");
+}
+
+/*Completion section ends---------------------------------*/

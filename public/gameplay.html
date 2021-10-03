@@ -22,6 +22,10 @@
       to avoid connecting the SDK to running emulators.
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
 
     <style>
       body {
@@ -39,45 +43,43 @@
   </head>
   <body>
     <audio id="gameplay-audio" autoplay loop>
-      <source src="audio/bgm2.mp3" type="audio/mpeg" />
+      <source src="audio/bgm2.mp3" type="audio/mpeg"/>
     </audio>
     <script>
       const audio = document.getElementById("gameplay-audio");
       audio.volume = 0.2;
+      if(sessionStorage.getItem("audio") == "off") { audio.pause(); }
     </script>
 
     <div class="main">
-      <h2 class="game-title">Journey To Mars</h2>
+      <h2 class="game-title">Voyage To Mars</h2>
       <div class="game-container">
         <div class="col-1">
           <div class="game-info">
-            <h3>Month: <span id="game-month">1</span></h3>
-            <div id="scene-div">
-              <img src="images/biologist.jpg" alt="Avatar" />
-            </div>
+            <h3>Months since launch: <span id="game-month">1</span></h3>
+            <img src="" alt="Scenario Image" id="scenario-img" />
           </div>
-          <div class="grid-container">
-            <div class="item">Health Level</div>
-            <div id="hp" class="text-center">100</div>
-            <div class="item">Muscle Mass</div>
-            <div id="mm" class="text-center">100</div>
-            <div class="item">Bones Mass</div>
-            <div id="bm" class="text-center">100</div>
-            <div class="item">Radiation Level</div>
-            <div id="rl" class="text-center">0</div>
-            <div class="item">Stress Level</div>
-            <div id="sl" class="text-center">0</div>
+          <div class="game-stats-container">
+            <div class="game-stats-header" ><span ><strong id="player-stat"></strong></span></div>
+            <div class="grid-container">
+              <div class="item">Health Level</div>
+              <div id="hp" class="text-center">100</div>
+              <div class="item">Muscle Mass</div>
+              <div id="mm" class="text-center">100</div>
+              <div class="item">Bones Mass</div>
+              <div id="bm" class="text-center">100</div>
+              <div class="item">Radiation Level</div>
+              <div id="rl" class="text-center">0</div>
+              <div class="item">Stress Level</div>
+              <div id="sl" class="text-center">0</div>
+            </div>
           </div>
         </div>
 
         <div class="col-2">
           <div id="command-title-div">
             <h3 id="command-heading">Command Center</h3>
-            <img
-              src="images/biologist-icon.png"
-              alt="Avatar"
-              id="avatar-icon"
-            />
+            <img src="" alt="Avatar" id="avatar-icon" />
           </div>
 
           <div id="command-history" class="col-2-1"></div>
@@ -97,7 +99,7 @@
     <script>
       initEnterListener(month, stats);
       initScenario();
-      getSlctAvatarImg();
+      getSlctAvatarDetails();
     </script>
   </body>
 </html>

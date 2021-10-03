@@ -25,43 +25,50 @@ body {
 }
 
 .fade-in {
-	animation: fadeIn 2s;
-  	opacity: 1;
+  animation: fadeIn 2s;
+  opacity: 1;
 }
 
-#game-logo-div img{
+#game-logo-div img {
   border-radius: 1rem;
   margin-top: 1rem;
 }
 
 /* For typing effect */
 .index p {
-  overflow: hidden; 
+  overflow: hidden;
   color: #00ff41;
   background-color: black;
   padding: 1rem;
-  border-right: .1em solid white;
+  border-right: 0.1em solid white;
   white-space: nowrap;
   margin: 1rem auto;
-  letter-spacing: .15em;
-  animation: 
-    typing 3s steps(30, end),
-    cursor .75s step-end infinite;
+  letter-spacing: 0.15em;
+  animation: typing 3s steps(30, end), cursor 0.75s step-end infinite;
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 35% }
-}
- 
-/* The cursor effect */
-@keyframes cursor {
-  from, to { border-color: transparent; }
-  50% { border-color: white; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 35%;
+  }
 }
 
-#feedback-button{
+/* The cursor effect */
+@keyframes cursor {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}
+
+#feedback-button {
   text-decoration: none;
   color: black;
   padding: 0.5rem 30%;
@@ -78,7 +85,7 @@ body {
   background-color: #c0c0c0;
 }
 
-.index button:hover{
+.index button:hover {
   font-style: italic;
   font-weight: bold;
   font-size: 1.2rem;
@@ -97,7 +104,7 @@ body {
   font-size: 13px;
 }
 
-.volume-button-div{
+.volume-button-div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -106,7 +113,7 @@ body {
 
 /*help start ------------------------------------------------------------------------------------------------------*/
 
-.help-div{
+.help-div {
   padding: 1rem;
   background-color: white;
   margin: 1rem;
@@ -114,22 +121,22 @@ body {
   text-align: center;
 }
 
-.help-div h1{
- text-align: center;
- margin-top: 0;
+.help-div h1 {
+  text-align: center;
+  margin-top: 0;
 }
 
-.help-div img{
+.help-div img {
   width: 60%;
   height: auto;
   border-radius: var(--radius);
 }
 
-.help-div div{
+.help-div div {
   margin: 1rem;
 }
 
-.help-div div button{
+.help-div div button {
   cursor: pointer;
   font-size: 1rem;
   width: 50%;
@@ -140,7 +147,7 @@ body {
   background-color: #c0c0c0;
 }
 
-.help-div div button:hover{
+.help-div div button:hover {
   font-style: italic;
   font-weight: bold;
   font-size: 1rem;
@@ -157,7 +164,7 @@ body {
   width: 100%;
 }
 
-.avatar-image{
+.avatar-image {
   width: 80%;
   height: auto;
   border-radius: var(--radius);
@@ -195,8 +202,13 @@ body {
   margin-right: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
+  overflow: hidden;
   border-radius: var(--radius);
+}
+
+#avatar-img img {
+  width: 100%;
 }
 
 .avatar-desc-container {
@@ -215,6 +227,7 @@ body {
 #avatar-desc {
   width: 90%;
   height: 95%;
+  overflow:overlay
 }
 
 .avatar-button-container {
@@ -262,32 +275,74 @@ body {
   color: white;
 }
 
+.icon {
+  background: url("images/biologist-icon.png");
+  height: 20px;
+  width: 20px;
+  display: block;
+  /* Other styles here */
+}
+
 .col-1 {
-  width: 55%;
+  width: 45%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.game-info {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--bg-primary);
   border-radius: var(--radius);
 }
 
-.game-info {
-  width: 90%;
-  height: 95%;
+#scenario-img {
+  border-radius: var(--radius);
+  width: 80%;
+}
+
+.game-stats-container {
+  width: 100%;
+  height: 20vh;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-#scene-div img {
-  width: auto;
-  height: 55vh;
+  background-color: black;
+  border: 1px solid white;
   border-radius: var(--radius);
 }
 
+.game-stats-header {
+  width: 100%;
+  padding: 0.5rem 0;
+  text-align: center;
+  background-color: white;
+}
+
+.scene-div img {
+  width: auto;
+  height: 45vh;
+  border-radius: var(--radius);
+}
+
+.grid-container {
+  width: 90%;
+  margin: 1rem 0;
+  color: white;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+}
+
 .col-2 {
-  width: 40%;
+  width: 53%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -317,21 +372,12 @@ body {
   height: 10vh;
   display: flex;
   flex-direction: row;
-
 }
 
 .col-2-2 input {
   width: 100%;
   padding: 2rem 1rem;
   border-radius: var(--radius);
-}
-
-.grid-container {
-  width: 100%;
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-gap: 10px;
 }
 
 #command-history {
@@ -349,10 +395,96 @@ body {
   border-radius: var(--radius);
 }
 
-#avatar-icon{
+#avatar-icon {
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  margin-right: 1rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-header .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 10px 15px;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#overlay:active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#submit{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#submit-button{
+  border-radius: var(--radius);
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  border: none;
+}
+
+
+#submit-button:hover {
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: 0.2s;
+  border-radius: var(--radius);
+  background-color: black;
+  color:#00ff41;
 }
 
 /* gameplay page end ------------------------------------------------------------------------------------------------------*/
@@ -364,8 +496,23 @@ body {
   align-items: center;
 }
 
-#end-title {
+#end-card{
+  padding: 4rem 0rem;
+  margin-bottom: 2rem;
+  background-color: black;
+  border-radius: 0.3rem;
+}
+
+#end-title, #end-subtitle{
   color: #00ff41;
+}
+
+#end-title {
+  text-transform: uppercase;
+}
+
+#end-subtitle {
+  text-transform: capitalize;
 }
 
 .end-col-1 {
@@ -431,8 +578,15 @@ body {
   border-radius: var(--radius);
   background-color: var(--text-primary);
 }
-
 /* Credits End------------------------------------------------------*/
+
+/*Gameover Start---------------------------------------------------*/
+#gameover-img{
+  width: 100%;
+  height: 2rem;
+}
+
+/*Gameover End-----------------------------------------------------*/
 
 @media only screen and (max-width: 1000px) {
 }

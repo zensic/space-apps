@@ -40,6 +40,7 @@
     <script>
       const audio = document.getElementById("index-audio");
       audio.volume = 0.2;
+      audio.pause();
     </script>
     <div class="main index">
       <div id="game-logo-div">
@@ -51,7 +52,7 @@
       </button>
       <button><a href="https://forms.gle/2fhAtrbgfzVDPgtL7" target="_blank" rel="noopener noreferrer" id="feedback-button">Feedback</a></button>
       <button onclick="window.location.href='help.html'">Help</button>
-      <button id="disabled-audio" onclick="configureAudio('index-audio')">Sound: Off/On</button>
+      <button id="disabled-audio" onclick="configureAudio('index-audio')">Sound: <span id="toggleSound">Off</span></button>
     </div>
   </body>
   <script src="scripts/app.js"></script>

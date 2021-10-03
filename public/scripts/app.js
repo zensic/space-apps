@@ -50,8 +50,6 @@ function setAvatar($avatar, $sessionAvatar) {
     .get()
     .then((doc) => {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
-
         if (doc.data().description) {
           document
             .getElementById("avatar-img")
@@ -107,15 +105,14 @@ function initEnterListener($month, $stats) {
     if (e.key == "Enter") {
       e.preventDefault();
       // prints command out to the terminal
-      handleCommand(command_input.value); 
+      handleCommand(command_input.value);
 
       if (command_type == "scenario") {
         // returns consequence of action
-        getEffect($month, command_input.value, $stats); 
-
+        getEffect($month, command_input.value, $stats);
       } else if ((command_type = "filler")) {
         // increase filler task count by 1
-        no_of_filler_tasks_executed += 1; 
+        no_of_filler_tasks_executed += 1;
         getFillerTask($stats, $month);
       }
 
@@ -181,12 +178,12 @@ function getFillerTask($stats, $index) {
 
         if (no_of_filler_tasks_executed < 3) {
           var fish_fillet = `
-          You are free to explore! Here's what you can do:<br/>
+          <strong>Side Tasks</strong><br/>You are free to explore! <br/><br/><strong>Here's what you can do:</strong><br/><em>
           1. Check Health<br/>
           2. Check Radiation Levels<br/>
           3. Eat fruits and vegetables<br/>
           4. Exercise<br/>
-          5. Take radiation medicine<br/><br/>
+          5. Take radiation medicine</em><br/><br/>
           `;
 
           handleCommand(fish_fillet);
@@ -213,6 +210,49 @@ function getFillerTask($stats, $index) {
 function addMonth($month) {
   $month[0] = $month[0] + 1;
   document.getElementById("game-month").innerHTML = $month[0];
+}
+
+//Pass in selected avatar
+function getSlctAvatarImg() {
+
+  document.addEventListener("DOMContentLoaded", (e) => {
+    var avatarImg = '';
+    var slctAvatar = sessionStorage.getItem("avatar");
+  
+    const db = firebase.firestore();
+    const docRef = db.collection("avatar").doc(slctAvatar);
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          avatarImg = doc.data().icon-image;
+
+          console.log(doc.data().icon-image);
+
+          document.getElementById("avatar-icon").src=avatarImg;
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  });
+
+  /*switch(slctAvatar) {
+    case 'astronaut':
+      avatarImg = '';
+      break;
+    case 'biologist':
+      // code block
+      break;
+    case 'engineer':
+      // code block
+      break;
+    case 'scientist':
+      // code block
+      break;
+  }*/
 }
 
 // gets the scenario and updates the dom
@@ -275,14 +315,14 @@ function getStats($index, $action, $stats) {
         // change command_type back to filler
         command_type = "filler";
 
-        // add filler tasks        
+        // add filler tasks
         var fish_fillet = `
-        You are free to explore! Here's what you can do:<br/>
+        <strong>Side Tasks</strong><br/>You are free to explore! <br/><br/><strong>Here's what you can do:</strong><br/><em>
         1. Check Health<br/>
         2. Check Radiation Levels<br/>
         3. Eat fruits and vegetables<br/>
         4. Exercise<br/>
-        5. Take radiation medicine<br/><br/>
+        5. Take radiation medicine</em><br/><br/>
         `;
         handleCommand(fish_fillet);
       } else {
@@ -414,46 +454,9 @@ function checkMonths($months) {}
 
 // initialize first scenario
 function initScenario() {
-  document.addEventListener("DOMContentLoaded", (event) => {
+  document.addEventListener("DOMContentLoaded", (e) => {
     getScenario("0");
     getScenario("1");
   });
-}
-
-const openModalButtons = document.querySelectorAll("[data-modal-target]");
-const closeModalButtons = document.querySelectorAll("[data-close-button]");
-const overlay = document.getElementById("overlay");
-
-openModalButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const modal = document.querySelector(button.dataset.modalTarget);
-    openModal(modal);
-  });
-});
-
-overlay.addEventListener("click", () => {
-  const modals = document.querySelectorAll(".modal.active");
-  modals.forEach((modal) => {
-    closeModal(modal);
-  });
-});
-
-closeModalButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const modal = button.closest(".modal");
-    closeModal(modal);
-  });
-});
-
-function openModal(modal) {
-  if (modal == null) return;
-  modal.classList.add("active");
-  overlay.classList.add("active");
-}
-
-function closeModal(modal) {
-  if (modal == null) return;
-  modal.classList.remove("active");
-  overlay.classList.remove("active");
 }
 /* gameplay section end */

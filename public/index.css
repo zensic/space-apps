@@ -264,20 +264,25 @@ body {
 
 .col-1 {
   width: 55%;
-  background-color: var(--bg-primary);
-  border-radius: var(--radius);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: var(--bg-primary);
+  border-radius: var(--radius);
 }
 
 .game-info {
   width: 90%;
   height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #scene-div img {
-  width: 100%;
+  width: auto;
+  height: 55vh;
   border-radius: var(--radius);
 }
 
@@ -289,12 +294,12 @@ body {
   justify-content: space-between;
 }
 
-.col-2 h3 {
+/*.col-2 h3 {
   padding: 1rem;
   margin: 0;
   background-color: var(--bg-primary);
   border-radius: var(--radius);
-}
+}*/
 
 .col-2-1 {
   height: 60vh;
@@ -321,13 +326,12 @@ body {
   border-radius: var(--radius);
 }
 
-.tb-col-1{
-  width: 70%;
-}
-
-.tb-col-2{
-  width: 30%;
-  text-align: center;
+.grid-container {
+  width: 100%;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-gap: 10px;
 }
 
 #command-history {
@@ -335,89 +339,20 @@ body {
   scroll-behavior: smooth;
 }
 
-#av-stat-btn{
-  margin:0;
-  padding: 0;
-  border-radius: var(--radius);
-}
-
-#command-title {
-  display: inline-flex;
+#command-title-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem;
   margin: 0;
   background-color: var(--bg-primary);
   border-radius: var(--radius);
 }
 
-#command-heading {
-}
-
 #avatar-icon{
-  margin-right: 2rem;
   border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-}
-
-.modal {
-  width: 80%;
-  max-width: 500px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-  border: 1px solid black;
-  border-radius: var(--radius);
-  z-index: 10;
-  background-color: white;
-}
-
-.modal.active {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.modal-header {
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-}
-
-.modal-header .title {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-header .close-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-body {
-  padding: 0.5rem 1rem;
-}
-
-#overlay {
-  position: fixed;
-  opacity: 0;
-  transition: 200ms ease-in-out;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
-  pointer-events: none;
-}
-
-#overlay.active {
-  opacity: 1;
-  pointer-events: all;
+  width: 3rem;
+  height: 3rem;
 }
 
 /* gameplay page end ------------------------------------------------------------------------------------------------------*/

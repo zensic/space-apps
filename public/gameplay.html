@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="images/logo-icon.png" />
     <title>Space Apps</title>
 
     <!-- update the version number as needed -->
@@ -55,16 +56,28 @@
               <img src="images/biologist.jpg" alt="Avatar" />
             </div>
           </div>
+          <div class="grid-container">
+            <div class="item">Health Level</div>
+            <div id="hp" class="text-center">100</div>
+            <div class="item">Muscle Mass</div>
+            <div id="mm" class="text-center">100</div>
+            <div class="item">Bones Mass</div>
+            <div id="bm" class="text-center">100</div>
+            <div class="item">Radiation Level</div>
+            <div id="rl" class="text-center">0</div>
+            <div class="item">Stress Level</div>
+            <div id="sl" class="text-center">0</div>
+          </div>
         </div>
+
         <div class="col-2">
-          <div id="command-title">
-            <h2 id="command-heading">
-              Command Center
-              
-              
-              
-            </h2>
-            <img src="images/biologist-icon.png" alt="Avatar" id="avatar-icon" />
+          <div id="command-title-div">
+            <h3 id="command-heading">Command Center</h3>
+            <img
+              src="images/biologist-icon.png"
+              alt="Avatar"
+              id="avatar-icon"
+            />
           </div>
 
           <div id="command-history" class="col-2-1"></div>
@@ -79,42 +92,12 @@
         </div>
       </div>
     </div>
-
-    <div class="modal" id="modal">
-      <div class="modal-header">
-        <div class="title">Status Levels</div>
-        <button data-close-button class="close-button">&times;</button>
-      </div>
-      <div class="modal-body">
-        <table>
-          <tr>
-            <td class="tb-col-1"><strong>Health Level</strong></td>
-            <td class="tb-col-2"><p id="hp">100</p></td>
-          </tr>
-          <tr>
-            <td class="tb-col-1"><strong>Muscle Mass</strong></td>
-            <td class="tb-col-2"><p id="mm">100</p></td>
-          </tr>
-          <tr>
-            <td class="tb-col-1"><strong>Bones Mass</strong></td>
-            <td class="tb-col-2"><p id="bm">100</p></td>
-          </tr>
-          <tr>
-            <td class="tb-col-1"><strong>Radiation Level</strong></td>
-            <td class="tb-col-2"><p id="rl">0</p></td>
-          </tr>
-          <tr>
-            <td class="tb-col-1"><strong>Stress Level</strong></td>
-            <td class="tb-col-2"><p id="sl">0</p></td>
-          </tr>
-        </table>
-      </div>
-    </div>
     <div id="overlay"></div>
     <script src="scripts/app.js"></script>
     <script>
       initEnterListener(month, stats);
       initScenario();
+      getSlctAvatarImg();
     </script>
   </body>
 </html>

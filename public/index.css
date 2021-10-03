@@ -184,6 +184,11 @@ body {
   font-weight: bold;
 }
 
+.avatar-selected {
+  background-color: #00ff41;
+  font-weight: bold;
+}
+
 .avatar-container {
   display: flex;
   width: 100%;
@@ -499,6 +504,7 @@ body {
 
 /* End Scene Start------------------------------------------------------*/
 .end-game-container {
+  margin: 10px;
   min-height: 100%;
   min-height: 100vh;
 
@@ -553,7 +559,7 @@ body {
 
 #end-didyouknow>div{
   padding: 1rem;
-  height: 200px;
+  height: 500px;
 }
 
 #end-didyouknow h1, #end-didyouknow p{
@@ -561,12 +567,21 @@ body {
 }
 
 .end-btn {
+  font-size: 1rem;
+  cursor: pointer;
   width: 100%;
   padding: 1rem;
   margin-top: 0.5rem;
-
+  border-radius: var(--radius);
   position: relative;
   top: 50px;
+}
+
+.end-btn:hover{
+  font-weight: bold;
+  transition: 0.2s;
+  border-radius: var(--radius);
+  background-color: #00ff41;
 }
 
 .red-border {
@@ -581,25 +596,27 @@ body {
   margin: 0.5rem 0;
   display: flex;
   border-radius: var(--radius);
-  background-color: #00ff41;
 }
 
 .t1 {
-  animation-name: colors;
-  animation-duration: 2.5s;
+  background-color: #00ff41;
+  animation-name: colors1;
+  animation-duration: 2.s;
 }
 
 .t2 {
-  animation-name: colors;
+  background-color: #7ee8fa;
+  animation-name: colors2;
   animation-duration: 3s;
 }
 
 .t3 {
-  animation-name: colors;
-  animation-duration: 3.5s;
+  background-color: #fff44f;
+  animation-name: colors3;
+  animation-duration: 3.6s;
 }
 
-@keyframes colors {
+@keyframes colors1 {
   0% {
     background-color: #fff44f;
     transform: translateX(-100%);
@@ -612,6 +629,38 @@ body {
   }
   100% {
     background-color: #00ff41;
+  }
+}
+
+@keyframes colors2 {
+  0% {
+    background-color: #00ff41;
+    transform: translateX(-100%);
+  }
+  50% {
+    background-color: #fff44f;
+  }
+  75% {
+    background-color: #fff44f;
+  }
+  100% {
+    background-color: #7ee8fa;
+  }
+}
+
+@keyframes colors3 {
+  0% {
+    background-color: #7ee8fa;
+    transform: translateX(-100%);
+  }
+  50% {
+    background-color: #00ff41;
+  }
+  75% {
+    background-color: #fff44f;
+  }
+  100% {
+    background-color: #fff44f;
   }
 }
 
@@ -644,12 +693,14 @@ body {
   padding: 0.5rem 0;
   border: none;
   transform: var(--transition-speed);
+  border-radius: var(--radius);
 }
 
 .credit-button:hover {
   cursor: pointer;
-  color: var(--text-primary);
-  background-color: black;
+  font-weight: bold;
+  background-color: #00ff41;
+  border-radius: var(--radius);
 }
 
 /* Credits End------------------------------------------------------*/
